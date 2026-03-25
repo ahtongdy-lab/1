@@ -3,201 +3,214 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dashboard TV PRO FINAL (ULTIMATE)</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<title>Infografik Auto Slide</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
-body{background:#000;color:#fff;overflow:hidden}
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Segoe UI',sans-serif;
+}
 
-.slider{width:100vw;height:100vh;position:relative}
-.slide{position:absolute;width:100%;height:100%;padding:40px;opacity:0;transition:1s;background-size:cover;background-position:center}
-.slide.active{opacity:1}
+body{
+background:#0f172a;
+color:white;
+overflow:hidden;
+}
 
-.header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}
-.logo{width:70px;height:70px;object-fit:contain}
-.title{font-size:2vw;font-weight:600}
-.clock{font-size:1.3vw}
+/* HEADER */
+.header{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:80px;
+background:rgba(0,0,0,0.6);
+display:flex;
+align-items:center;
+justify-content:space-between;
+padding:0 20px;
+z-index:10;
+}
 
-.grid{display:grid;grid-template-columns:1fr 1fr;gap:20px;height:70%}
-.card{background:rgba(255,255,255,0.1);padding:20px;border-radius:15px;backdrop-filter:blur(6px)}
-.list{font-size:1.2vw;white-space:pre-line}
+.header-left{
+display:flex;
+align-items:center;
+}
 
-.award{text-align:center;margin-top:50px}
-.award img{width:180px;height:180px;border-radius:50%;border:6px solid gold;object-fit:cover;box-shadow:0 0 20px gold}
-.award-name{font-size:3vw;font-weight:bold}
-.award-pos{font-size:1.5vw}
+.logo{
+height:60px;
+margin-right:15px;
+}
 
-.ticker{position:absolute;bottom:0;width:100%;background:#dc2626;padding:10px;overflow:hidden}
-.ticker span{display:inline-block;padding-left:100%;animation:scroll 20s linear infinite;white-space:nowrap}
-@keyframes scroll{0%{transform:translateX(0)}100%{transform:translateX(-100%)}}
+.title{
+font-size:24px;
+font-weight:bold;
+}
 
-.admin{position:fixed;top:10px;right:10px;background:#111;padding:10px;border-radius:10px;width:340px;max-height:90vh}
-.tab-buttons{display:flex;gap:5px;margin-bottom:10px}
-.tab-buttons button{flex:1;padding:6px;background:#333;color:#fff;border:none;cursor:pointer}
-.tab-buttons button.active{background:#22c55e}
-.tab{display:none;max-height:70vh;overflow:auto}
-.tab.active{display:block}
-.admin input,.admin textarea{width:100%;margin-bottom:6px;padding:6px}
-.admin button{width:100%;padding:8px;margin-top:5px;background:#22c55e;border:none;color:#fff;cursor:pointer}
+/* JAM */
+.clock{
+font-size:22px;
+font-weight:bold;
+letter-spacing:1px;
+}
 
-.fab{position:fixed;bottom:20px;right:20px;width:60px;height:60px;border-radius:50%;background:#22c55e;color:#fff;font-size:24px;border:none;cursor:pointer}
+/* SLIDER */
+.slider{
+position:absolute;
+top:80px;
+left:0;
+width:100%;
+height:calc(100% - 120px);
+overflow:hidden;
+}
+
+.slide{
+position:absolute;
+width:100%;
+height:100%;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+opacity:0;
+transform:scale(1.1);
+transition:all 1s ease;
+}
+
+.slide.active{
+opacity:1;
+transform:scale(1);
+}
+
+/* INFOGRAPHIC */
+.slide h1{
+font-size:60px;
+margin-bottom:20px;
+text-align:center;
+}
+
+.slide p{
+font-size:28px;
+max-width:70%;
+text-align:center;
+line-height:1.5;
+}
+
+/* BACKGROUND */
+.bg1{background:linear-gradient(45deg,#1e3a8a,#0ea5e9);}
+.bg2{background:linear-gradient(45deg,#065f46,#10b981);}
+.bg3{background:linear-gradient(45deg,#7c2d12,#f97316);}
+.bg4{background:linear-gradient(45deg,#4c1d95,#a855f7);}
+
+/* TICKER */
+.ticker{
+position:fixed;
+bottom:0;
+width:100%;
+height:40px;
+background:#111827;
+overflow:hidden;
+display:flex;
+align-items:center;
+}
+
+.ticker span{
+white-space:nowrap;
+display:inline-block;
+padding-left:100%;
+animation:scroll 20s linear infinite;
+font-size:18px;
+font-weight:bold; /* 🔥 BOLD */
+letter-spacing:1px;
+}
+
+@keyframes scroll{
+0%{transform:translateX(0);}
+100%{transform:translateX(-100%);}
+}
 </style>
 </head>
+
 <body>
 
-<div class="admin" id="adminPanel">
-<div class="tab-buttons">
-<button onclick="openTab(0)" class="active">Berita</button>
-<button onclick="openTab(1)">Staf</button>
-<button onclick="openTab(2)">Anugerah</button>
-<button onclick="openTab(3)">Media</button>
+<!-- HEADER -->
+<div class="header">
+<div class="header-left">
+<img src="logo.png" class="logo">
+<div class="title">MAJLIS DAERAH - INFO SEMASA</div>
 </div>
 
-<div class="tab active">
-<textarea id="newsInput" placeholder="Berita"></textarea>
-<textarea id="meetingInput" placeholder="Mesyuarat"></textarea>
-<textarea id="tickerInput" placeholder="Ticker"></textarea>
+<div class="clock" id="clock">00:00:00 AM</div>
 </div>
 
-<div class="tab">
-<textarea id="staffInput" placeholder="Info Staf"></textarea>
-</div>
-
-<div class="tab">
-<div id="awardInputs"></div>
-<input type="file" id="excelFile">
-<button onclick="importExcel()">Import CSV</button>
-</div>
-
-<div class="tab">
-<input type="file" id="logoUpload">
-<input type="file" id="bg1">
-<input type="file" id="bg2">
-<input type="file" id="bg3">
-</div>
-
-<button onclick="updateAll()">UPDATE</button>
-</div>
-
+<!-- SLIDER -->
 <div class="slider">
-<div class="slide active" id="s1">
-<div class="header"><img class="logo"><div class="title">Dashboard</div><div class="clock" id="clock"></div></div>
-<div class="grid"><div class="card"><div id="news" class="list"></div></div><div class="card"><div id="meeting" class="list"></div></div></div>
+
+<div class="slide bg1 active">
+<h1>INFO PENTING</h1>
+<p>Operasi kaunter dibuka dari jam 8.00 pagi hingga 4.30 petang.</p>
+<p>Sila balik ke rumah jika tahu ofis mau ditutupkan</p>
 </div>
 
-<div class="slide" id="s2">
-<div class="header"><img class="logo"><div class="title">Info Staf</div><div class="clock" id="clock2"></div></div>
-<div class="card"><div id="staff" class="list"></div></div>
+<div class="slide bg2">
+<h1>PENGUMUMAN</h1>
+<p>Pembayaran cukai pintu boleh dibuat dengan berjumpa dengan Kak Kadaer.</p>
 </div>
 
-<div class="slide" id="s3">
-<div class="header"><img class="logo"><div class="title">Anugerah</div><div class="clock" id="clock3"></div></div>
-<div class="award"><img id="awardImg"><div id="awardName" class="award-name"></div><div id="awardPos" class="award-pos"></div></div>
-</div>
+<div class="slide bg3">
+<h1>PROGRAM</h1>
+<p>Gotong-royong perdana akan diadakan hujung minggu ini.</p>
 </div>
 
-<div class="ticker"><span id="ticker"></span></div>
-<button class="fab" onclick="toggleAdmin()">⚙️</button>
+<div class="slide bg4">
+<h1>MAKLUMAN</h1>
+<p>Sila patuhi peraturan parkir di kawasan bandar.</p>
+</div>
+
+</div>
+
+<!-- TICKER -->
+<div class="ticker">
+<span>SELAMAT DATANG | INFO TERKINI MAJLIS DAERAH | SILA AMBIL PERHATIAN SEMUA PENGUMUMAN | TERIMA KASIH</span>
+</div>
 
 <script>
-function openTab(i){
-document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
-document.querySelectorAll('.tab-buttons button').forEach(b=>b.classList.remove('active'));
-document.querySelectorAll('.tab')[i].classList.add('active');
-document.querySelectorAll('.tab-buttons button')[i].classList.add('active');
+// SLIDER
+let slides = document.querySelectorAll('.slide');
+let index = 0;
+
+function showSlide(){
+slides.forEach(s => s.classList.remove('active'));
+slides[index].classList.add('active');
+
+index++;
+if(index >= slides.length) index = 0;
+}
+setInterval(showSlide,5000);
+
+// JAM AM/PM
+function updateClock(){
+let now = new Date();
+let hours = now.getHours();
+let minutes = now.getMinutes();
+let seconds = now.getSeconds();
+
+let ampm = hours >= 12 ? 'PM' : 'AM';
+hours = hours % 12;
+hours = hours ? hours : 12;
+
+hours = String(hours).padStart(2,'0');
+minutes = String(minutes).padStart(2,'0');
+seconds = String(seconds).padStart(2,'0');
+
+document.getElementById("clock").innerText =
+`${hours}:${minutes}:${seconds} ${ampm}`;
 }
 
-let container=document.getElementById('awardInputs');
-for(let i=1;i<=5;i++){
-container.innerHTML+=`<input id="name${i}" placeholder="Nama ${i}">
-<input id="pos${i}" placeholder="Jawatan ${i}">
-<input type="file" id="img${i}">`;
-}
-
-let awards=[],aIndex=0;
-
-window.onload=()=>{
-if(!localStorage.data){
-localStorage.data=JSON.stringify({
-news:`Berita contoh\nProgram komuniti`,
-meeting:`Mesyuarat 10AM\nMesyuarat 2PM`,
-staff:`Semua staf hadir awal`,
-ticker:`SELAMAT DATANG KE MAJLIS DAERAH`
-});
-}
-
-let d=JSON.parse(localStorage.data);
-newsInput.value=d.news; meetingInput.value=d.meeting; staffInput.value=d.staff; tickerInput.value=d.ticker;
-news.innerText=d.news; meeting.innerText=d.meeting; staff.innerText=d.staff; ticker.innerText=d.ticker;
-
-if(localStorage.awards){awards=JSON.parse(localStorage.awards)}
-if(awards.length){awardName.innerText=awards[0].name;awardPos.innerText=awards[0].pos;awardImg.src=awards[0].img}
-
-if(localStorage.logo){document.querySelectorAll('.logo').forEach(l=>l.src=localStorage.logo)}
-['bg_s1','bg_s2','bg_s3'].forEach((k,i)=>{
-if(localStorage[k])document.getElementById('s'+(i+1)).style.backgroundImage=`url('${localStorage[k]}')`
-})
-};
-
-function updateAll(){
-let data={news:newsInput.value,meeting:meetingInput.value,staff:staffInput.value,ticker:tickerInput.value};
-localStorage.data=JSON.stringify(data);
-news.innerText=data.news; meeting.innerText=data.meeting; staff.innerText=data.staff; ticker.innerText=data.ticker;
-
-let promises=[]; awards=[];
-for(let i=1;i<=5;i++){
-let name=document.getElementById('name'+i).value;
-let pos=document.getElementById('pos'+i).value;
-let file=document.getElementById('img'+i).files[0];
-if(name && file){
-promises.push(new Promise(res=>{
-let r=new FileReader();
-r.onload=e=>res({name,pos,img:e.target.result});
-r.readAsDataURL(file);
-}))
-}
-}
-Promise.all(promises).then(r=>{awards=r;localStorage.awards=JSON.stringify(awards)})
-
-let logoFile=logoUpload.files[0];
-if(logoFile){let r=new FileReader();r.onload=e=>{localStorage.logo=e.target.result;document.querySelectorAll('.logo').forEach(l=>l.src=e.target.result)};r.readAsDataURL(logoFile)}
-
-setBg('bg1','s1','bg_s1');
-setBg('bg2','s2','bg_s2');
-setBg('bg3','s3','bg_s3');
-}
-
-function setBg(input,slide,key){
-let f=document.getElementById(input).files[0];
-if(f){let r=new FileReader();r.onload=e=>{document.getElementById(slide).style.backgroundImage=`url('${e.target.result}')`;localStorage[key]=e.target.result};r.readAsDataURL(f)}
-}
-
-setInterval(()=>{
-let t=new Date().toLocaleTimeString('ms-MY');
-clock.innerText=t;clock2.innerText=t;clock3.innerText=t
-},1000);
-
-setInterval(()=>{
-if(awards.length){let a=awards[aIndex%awards.length];awardName.innerText=a.name;awardPos.innerText=a.pos;awardImg.src=a.img;aIndex++}
-},3000);
-
-function importExcel(){
-let file=document.getElementById('excelFile').files[0];
-if(!file)return;let reader=new FileReader();
-reader.onload=e=>{
-let rows=e.target.result.split('\n');
-for(let i=1;i<rows.length && i<=5;i++){let col=rows[i].split(',');document.getElementById('name'+i).value=col[0]||'';document.getElementById('pos'+i).value=col[1]||''}
-};reader.readAsText(file)
-}
-
-function toggleAdmin(){
-let p=document.getElementById('adminPanel');
-p.style.display=(p.style.display==='none')?'block':'none'
-}
-
-setTimeout(()=>toggleAdmin(),10000);
-document.addEventListener('keydown',e=>{if(e.key==='Escape')toggleAdmin()});
+setInterval(updateClock,1000);
+updateClock();
 </script>
 
 </body>
