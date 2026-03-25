@@ -3,29 +3,24 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Infografik Premium Display</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+<title>Smart Dashboard Majlis</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800&family=Poppins:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
-
+*{margin:0;padding:0;box-sizing:border-box;}
 body{
 background:#020617;
 color:white;
 overflow:hidden;
-font-family:'Segoe UI',sans-serif;
+font-family:'Poppins',sans-serif;
 }
 
-/* HEADER PREMIUM */
+/* HEADER */
 .header{
 position:fixed;
 top:0;
-left:0;
 width:100%;
 height:90px;
 display:flex;
@@ -44,33 +39,16 @@ align-items:center;
 gap:15px;
 }
 
-.logo{
-height:65px;
-}
+.logo{height:65px;}
+.title{font-size:26px;font-weight:600;}
 
-.title{
-font-size:26px;
-font-weight:600;
-letter-spacing:1px;
-}
-
-/* CLOCK PREMIUM */
-.clock{
-font-family:'Orbitron',sans-serif;
-text-align:right;
-}
-
+.clock{text-align:right;font-family:'Orbitron';}
 .time{
 font-size:34px;
 color:#38bdf8;
 text-shadow:0 0 10px #38bdf8;
 }
-
-.date{
-font-size:16px;
-margin-top:3px;
-opacity:0.9;
-}
+.date{font-size:16px;margin-top:3px;}
 
 /* SLIDER */
 .slider{
@@ -98,17 +76,40 @@ opacity:1;
 transform:translateY(0);
 }
 
-/* TEXT */
+/* NORMAL SLIDE */
 .slide h1{
-font-size:70px;
-margin-bottom:20px;
-text-shadow:0 0 20px rgba(0,0,0,0.5);
+font-family:'Orbitron';
+font-size:90px;
+background:linear-gradient(90deg,#fff,#38bdf8);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
+text-shadow:0 0 20px rgba(56,189,248,0.6);
 }
 
 .slide p{
-font-size:30px;
-max-width:70%;
+font-size:36px;
+max-width:75%;
 text-align:center;
+text-shadow:0 2px 10px rgba(0,0,0,0.7);
+}
+
+/* HIGH IMPACT */
+.high-impact{
+background:radial-gradient(circle,#7f1d1d,#000);
+animation:bgPulse 3s infinite;
+}
+
+.high-impact h1{
+font-size:120px;
+color:#ff0000;
+-webkit-text-fill-color:unset;
+text-shadow:0 0 30px red;
+animation:pulse 1.5s infinite;
+}
+
+.high-impact p{
+font-size:48px;
+font-weight:bold;
 }
 
 /* BACKGROUND */
@@ -117,7 +118,7 @@ text-align:center;
 .bg3{background:linear-gradient(120deg,#7c2d12,#f97316);}
 .bg4{background:linear-gradient(120deg,#4c1d95,#a855f7);}
 
-/* TICKER PREMIUM */
+/* TICKER */
 .ticker{
 position:fixed;
 bottom:0;
@@ -137,12 +138,24 @@ animation:scroll 18s linear infinite;
 font-size:18px;
 font-weight:bold;
 color:#38bdf8;
-letter-spacing:1px;
 }
 
+/* ANIMATION */
 @keyframes scroll{
 0%{transform:translateX(0);}
 100%{transform:translateX(-100%);}
+}
+
+@keyframes pulse{
+0%{transform:scale(1);}
+50%{transform:scale(1.05);}
+100%{transform:scale(1);}
+}
+
+@keyframes bgPulse{
+0%{background:radial-gradient(circle,#7f1d1d,#000);}
+50%{background:radial-gradient(circle,#b91c1c,#000);}
+100%{background:radial-gradient(circle,#7f1d1d,#000);}
 }
 </style>
 </head>
@@ -153,12 +166,12 @@ letter-spacing:1px;
 <div class="header">
 <div class="header-left">
 <img src="logomds.png" class="logo">
-<div class="title">MAJLIS DAERAH - INFO SEMASA</div>
+<div class="title">MAJLIS DAERAH - PAPARAN RASMI</div>
 </div>
 
 <div class="clock">
-<div class="time" id="time">00:00:00 AM</div>
-<div class="date" id="date">Loading...</div>
+<div class="time" id="time"></div>
+<div class="date" id="date"></div>
 </div>
 </div>
 
@@ -167,44 +180,50 @@ letter-spacing:1px;
 
 <div class="slide bg1 active">
 <h1>INFO PENTING</h1>
-<p>Operasi kaunter dibuka dari jam 8.00 pagi hingga 4.30 petang.</p>
+<p>Operasi kaunter dibuka dari jam 8.00 pagi hingga 4.30 petang</p>
 </div>
 
 <div class="slide bg2">
 <h1>PENGUMUMAN</h1>
-<p>Pembayaran cukai pintu boleh dibuat secara atas talian.</p>
+<p>Pembayaran cukai pintu boleh dibuat secara atas talian</p>
 </div>
 
-<div class="slide bg3">
-<h1>PROGRAM</h1>
-<p>Gotong-royong perdana akan diadakan hujung minggu ini.</p>
+<div class="slide">
+<h1>PERHATIAN</h1>
+<p>SILA MATIKAN TELEFON BIMBIT SEMASA MESYUARAT</p>
 </div>
 
 <div class="slide bg4">
-<h1>MAKLUMAN</h1>
-<p>Sila patuhi peraturan parkir di kawasan bandar.</p>
+<h1>PROGRAM</h1>
+<p>Gotong-royong perdana hujung minggu ini</p>
 </div>
 
 </div>
 
 <!-- TICKER -->
 <div class="ticker">
-<span>SELAMAT DATANG KE PAPARAN RASMI MAJLIS DAERAH | INFO TERKINI DIKEMASKINI SECARA MASA NYATA | TERIMA KASIH</span>
+<span>SELAMAT DATANG KE PAPARAN RASMI MAJLIS DAERAH | INFO DIKEMASKINI MASA NYATA | TERIMA KASIH</span>
 </div>
 
 <script>
-// SLIDE
+// AUTO HIGH IMPACT DETECT
 let slides=document.querySelectorAll('.slide');
-let index=0;
-
-function showSlide(){
-slides.forEach(s=>s.classList.remove('active'));
-slides[index].classList.add('active');
-index=(index+1)%slides.length;
+slides.forEach(s=>{
+if(s.innerText.includes("PENTING") || s.innerText.includes("PERHATIAN")){
+s.classList.add("high-impact");
 }
-setInterval(showSlide,5000);
+});
 
-// JAM + TARIKH PREMIUM
+// SLIDER
+let i=0;
+function runSlide(){
+slides.forEach(s=>s.classList.remove('active'));
+slides[i].classList.add('active');
+i=(i+1)%slides.length;
+}
+setInterval(runSlide,5000);
+
+// CLOCK BM
 function updateClock(){
 let now=new Date();
 
@@ -218,21 +237,21 @@ h=h%12||12;
 document.getElementById("time").innerText=
 `${String(h).padStart(2,'0')}:${m}:${s} ${ampm}`;
 
-// hari + tarikh BM
+// hari BM
 let hari=["Ahad","Isnin","Selasa","Rabu","Khamis","Jumaat","Sabtu"];
 let bulan=["Januari","Februari","Mac","April","Mei","Jun","Julai","Ogos","September","Oktober","November","Disember"];
 
 let hri=hari[now.getDay()];
-let txt=`${hri}, ${now.getDate()} ${bulan[now.getMonth()]} ${now.getFullYear()}`;
+let text=`${hri}, ${now.getDate()} ${bulan[now.getMonth()]} ${now.getFullYear()}`;
 
-let dateEl=document.getElementById("date");
+let el=document.getElementById("date");
 
 // warna khas
-if(hri==="Jumaat") dateEl.style.color="#22c55e";
-else if(hri==="Ahad") dateEl.style.color="#ef4444";
-else dateEl.style.color="white";
+if(hri==="Jumaat") el.style.color="#22c55e";
+else if(hri==="Ahad") el.style.color="#ef4444";
+else el.style.color="white";
 
-dateEl.innerText=txt;
+el.innerText=text;
 }
 
 setInterval(updateClock,1000);
